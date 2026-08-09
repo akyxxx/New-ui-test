@@ -1179,7 +1179,7 @@
     <div id="connIssueBanner" class="conn-issue-banner" style="display:none;">
         <div class="conn-issue-text">
             <strong>Connection Problem</strong>
-            <span>Couldn't reach the server. Check your internet connection.</span>
+            <span id="connIssueDetail">Couldn't reach the server. Check your internet connection.</span>
         </div>
         <button type="button" class="conn-issue-retry" onclick="location.reload()">Retry</button>
     </div>
@@ -2267,4 +2267,4 @@
         function removePhoto() {
             window.currentCustomPhoto = null;
             localStorage.removeItem('shiftgrid_avatar');
-            const name = document.g
+            co

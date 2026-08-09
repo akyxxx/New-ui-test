@@ -64,8 +64,8 @@
         .brand-showcase {
             background: #ffffff;
             border: 1px solid #EBEEF5;
-            border-radius: 22px;
-            padding: 10px 14px 10px 10px;
+            border-radius: 18px;
+            padding: 8px 12px 8px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -95,11 +95,11 @@
         .brand-cluster {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: #F6F8FC;
             border: 1px solid #EBEEF5;
-            border-radius: 16px;
-            padding: 5px 14px 5px 5px;
+            border-radius: 14px;
+            padding: 4px 10px 4px 4px;
         }
 
         .brand-divider {
@@ -113,9 +113,9 @@
             background: #F6F8FC;
             border: 1px solid #EBEEF5;
             color: #6b7280;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -123,7 +123,7 @@
             transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .hamburger-btn svg { width: 18px; height: 18px; }
+        .hamburger-btn svg { width: 15px; height: 15px; }
 
         .hamburger-btn:hover {
             border-color: rgba(37, 99, 235, 0.45);
@@ -142,17 +142,17 @@
         }
 
         .logo-icon-box {
-            width: 36px;
-            height: 36px;
-            border-radius: 12px;
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 18px rgba(37, 99, 235, 0.55);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18) inset, 0 0 12px rgba(37, 99, 235, 0.45);
             border: 1px solid rgba(255, 255, 255, 0.2);
             overflow: hidden;
-            padding: 4px;
+            padding: 3px;
             color: #ffffff;
         }
 
@@ -168,9 +168,9 @@
         }
 
         .brand-name {
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 800;
-            letter-spacing: -0.3px;
+            letter-spacing: -0.2px;
             background: linear-gradient(90deg, #12151c, #3b5480);
             -webkit-background-clip: text;
             background-clip: text;
@@ -178,10 +178,10 @@
         }
 
         .brand-tagline {
-            font-size: 9px;
+            font-size: 8px;
             color: var(--text-muted);
             font-weight: 700;
-            letter-spacing: 1.2px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -189,13 +189,13 @@
             background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(16, 185, 129, 0.04));
             border: 1px solid rgba(16, 185, 129, 0.28);
             color: var(--badge-green);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 18px;
+            font-size: 9px;
             font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             box-shadow: 0 0 14px rgba(16, 185, 129, 0.14);
         }
 
@@ -513,24 +513,24 @@
         .stat-card {
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
-            border-radius: 18px;
-            padding: 12px 10px;
+            border-radius: 16px;
+            padding: 10px 8px;
             box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
             overflow: hidden;
             position: relative;
         }
 
         .stat-icon-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 11px;
+            width: 26px;
+            height: 26px;
+            border-radius: 9px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
-        .stat-icon-badge svg { width: 16px; height: 16px; }
+        .stat-icon-badge svg { width: 13px; height: 13px; }
 
         .stat-icon-blue { background: linear-gradient(135deg, #3b6ff7, #2563eb); }
         .stat-icon-green { background: linear-gradient(135deg, #34d399, #10b981); }
@@ -538,27 +538,26 @@
         .stat-icon-amber { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
 
         .stat-label {
-            font-size: 10.5px;
+            font-size: 9.5px;
             font-weight: 700;
             color: var(--text-muted);
         }
 
         .stat-value {
-            font-size: 19px;
+            font-size: 15px;
             font-weight: 800;
             color: var(--text-main);
-            letter-spacing: -0.4px;
+            letter-spacing: -0.3px;
             margin-top: 2px;
             white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis;
         }
 
         .stat-sub {
-            font-size: 10px;
+            font-size: 9px;
             color: var(--text-muted);
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
         }
 
         .stat-sparkline {
@@ -660,6 +659,35 @@
             border: 1px solid rgba(37, 99, 235, 0.15);
         }
 
+        .cycle-toggle {
+            display: flex;
+            background: var(--card-inner);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 3px;
+            gap: 3px;
+            margin-bottom: 14px;
+        }
+
+        .cycle-toggle-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            padding: 8px 6px;
+            border-radius: 9px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .cycle-toggle-btn.active {
+            background: #ffffff;
+            color: var(--primary-blue);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        }
+
         /* Blue gradient split box: TOTAL SALARY | PENDING PAYOUT */
         .pay-cycle-box {
             display: flex;
@@ -751,29 +779,29 @@
             background-color: var(--card-bg);
             backdrop-filter: blur(12px);
             border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 18px;
-            margin-bottom: 16px;
+            border-radius: 18px;
+            padding: 15px;
+            margin-bottom: 14px;
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             flex-wrap: wrap;
             gap: 8px;
         }
 
-        .section-title { font-size: 15px; font-weight: 800; letter-spacing: -0.2px; }
+        .section-title { font-size: 14px; font-weight: 800; letter-spacing: -0.2px; }
 
         .month-lock-badge {
             background: rgba(37, 99, 235, 0.12);
             color: #2563eb;
             border: 1px solid rgba(37, 99, 235, 0.25);
-            padding: 4px 10px;
-            border-radius: 10px;
-            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 9px;
+            font-size: 9px;
             font-weight: 800;
             text-transform: uppercase;
         }
@@ -782,20 +810,20 @@
             background: #F0F4FF;
             color: #2563eb;
             border: 1px solid var(--card-border-glow);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 6px 11px;
+            border-radius: 10px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .log-shift-actions {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
@@ -803,45 +831,44 @@
             background: rgba(239, 68, 68, 0.08);
             color: var(--danger-red);
             border: 1px solid rgba(239, 68, 68, 0.25);
-            padding: 8px 14px;
-            border-radius: 12px;
-            font-size: 12px;
+            padding: 6px 11px;
+            border-radius: 10px;
+            font-size: 11px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
         }
 
         .shift-list {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .shift-item {
             background-color: var(--card-inner);
             border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 14px;
+            border-radius: 14px;
+            padding: 11px 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .shift-info h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
-        .shift-info p { font-size: 11px; color: var(--text-muted); font-weight: 500; }
+        .shift-info h4 { font-size: 13px; font-weight: 700; margin-bottom: 2px; }
+        .shift-info p { font-size: 10.5px; color: var(--text-muted); font-weight: 500; }
 
         .btn-log {
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            padding: 9px 16px;
-            border-radius: 14px;
+            background-color: #ffffff;
+            color: var(--primary-blue);
+            border: 1.5px solid var(--primary-blue);
+            padding: 6px 12px;
+            border-radius: 10px;
             font-weight: 800;
-            font-size: 12px;
+            font-size: 11px;
             cursor: pointer;
-            box-shadow: 0 4px 12px var(--primary-glow);
         }
 
         .history-list {
@@ -1021,9 +1048,9 @@
             background: linear-gradient(145deg, #F8FAFD, #F0F3F9);
             border: 1px solid var(--card-border-glow);
             color: var(--text-main);
-            width: 38px;
-            height: 38px;
-            border-radius: 13px;
+            width: 32px;
+            height: 32px;
+            border-radius: 11px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1031,7 +1058,7 @@
             transition: border-color 0.2s, transform 0.15s;
         }
         .notif-bell-btn:active { transform: scale(0.93); }
-        .notif-bell-btn svg { width: 18px; height: 18px; }
+        .notif-bell-btn svg { width: 15px; height: 15px; }
         .notif-bell-btn.has-unread svg { animation: bellRing 2.4s ease-in-out infinite; transform-origin: top center; }
         @keyframes bellRing {
             0%, 94%, 100% { transform: rotate(0); }
@@ -1309,6 +1336,11 @@
             <div class="pay-card-header">
                 <span id="cycleLabel" class="cycle-title">PAY CYCLE</span>
                 <span id="payDateBadge" class="pay-badge">Payday Pending</span>
+            </div>
+
+            <div class="cycle-toggle" id="cycleToggle">
+                <button type="button" class="cycle-toggle-btn" id="btnCyclePart1" onclick="setCyclePart('first')">1 – 15</button>
+                <button type="button" class="cycle-toggle-btn" id="btnCyclePart2" onclick="setCyclePart('second')">16 – End</button>
             </div>
 
             <div class="pay-cycle-box">
@@ -1898,6 +1930,19 @@
             });
         }
 
+        // Manual cycle-half selection (replaces the old auto date-based Part 1 / Part 2 switch).
+        // Defaults to whichever half today falls in, but the user can override with the toggle.
+        window.selectedCyclePart = null;
+
+        window.setCyclePart = function(part) {
+            window.selectedCyclePart = part;
+            const btn1 = document.getElementById('btnCyclePart1');
+            const btn2 = document.getElementById('btnCyclePart2');
+            if (btn1) btn1.classList.toggle('active', part === 'first');
+            if (btn2) btn2.classList.toggle('active', part === 'second');
+            updateCurrentMonthHistoryView();
+        };
+
         function updateCurrentMonthHistoryView() {
             const now = new Date();
             const currentMonth = now.getMonth();
@@ -1937,12 +1982,21 @@
             let activeEarnings = 0;
             let activeShiftsCount = 0;
 
-            const isPart2Active = currentDay > 15 || part2Shifts.length > 0;
+            // Default (first load): fall back to whichever half today falls in.
+            if (window.selectedCyclePart === null) {
+                window.selectedCyclePart = (currentDay > 15 || part2Shifts.length > 0) ? 'second' : 'first';
+            }
+            const isPart2Active = window.selectedCyclePart === 'second';
+
+            const btn1 = document.getElementById('btnCyclePart1');
+            const btn2 = document.getElementById('btnCyclePart2');
+            if (btn1) btn1.classList.toggle('active', !isPart2Active);
+            if (btn2) btn2.classList.toggle('active', isPart2Active);
 
             if (!isPart2Active) {
                 if (pendingBanner) pendingBanner.style.display = 'none';
                 if (splitDivider) splitDivider.style.display = 'none';
-                document.getElementById('cycleLabel').innerText = "MID-MONTH CYCLE (PART 1)";
+                document.getElementById('cycleLabel').innerText = `${monthPad}/01 – ${monthPad}/15`;
                 document.getElementById('payDateBadge').innerText = `Paid on ${config.payDay || 25}th`;
                 document.getElementById('cyclePeriodText').innerText = `01/${monthPad} – 15/${monthPad}`;
                 activeEarnings = part1Earnings;
@@ -1955,7 +2009,7 @@
                     document.getElementById('pendingPayDate').innerText = `Payday: ${config.payDay || 25}th ${monthNames[currentMonth].substring(0,3)}`;
                 }
                 if (splitDivider) splitDivider.style.display = showPending ? 'block' : 'none';
-                document.getElementById('cycleLabel').innerText = "END-MONTH CYCLE (PART 2)";
+                document.getElementById('cycleLabel').innerText = `${monthPad}/16 – ${lastDay}`;
                 document.getElementById('payDateBadge').innerText = "Paid on 10th (Next Mo.)";
                 document.getElementById('cyclePeriodText').innerText = `16/${monthPad} – ${lastDay}/${monthPad}`;
                 activeEarnings = part2Earnings;
@@ -2209,242 +2263,4 @@
             const name = document.getElementById('profileNameDisplay').innerText;
             const initials = getInitials(name);
             document.getElementById('modalAvatarPreview').innerText = initials;
-            document.getElementById('profileAvatarDisplay').innerText = initials;
-        }
-
-        function saveProfileChanges() {
-            const newName = document.getElementById('inputDisplayName').value;
-            if (newName.trim()) {
-                document.getElementById('profileNameDisplay').innerText = newName;
-                localStorage.setItem('shiftgrid_displayname', newName);
-                if (window.saveProfileToCloud) window.saveProfileToCloud(newName, window.currentCustomPhoto);
-            }
-            switchView('view-dashboard');
-        }
-
-        function downloadCSVReport() {
-            let csv = "Date,Shift Title,Earnings (LKR)\n";
-            (window.shiftRecords || []).forEach(r => { 
-                csv += `${r.date},"${r.title}",${Number(r.amount) || 0}\n`; 
-            });
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.setAttribute('href', url);
-            a.setAttribute('download', 'ShiftGrid_Attendance_Report.csv');
-            a.click();
-            window.URL.revokeObjectURL(url);
-        }
-
-        function resetSavedData() {
-            if (confirm("Reset all logged shift records?")) {
-                window.shiftRecords = [];
-                saveRecordsToStorage();
-                updateCurrentMonthHistoryView();
-                switchView('view-dashboard');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            updateShiftDateDisplay();
-            updateAccountUI();
-            renderAvailableShifts();
-            updateCurrentMonthHistoryView();
-        });
-    </script>
-
-    <!-- Firebase SDK Integration Module -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-        const firebaseConfig = {
-          apiKey: "AIzaSyA93AnibNs8iaNwYuy1tJglGXXqeY6p2oo",
-          authDomain: "shift-salary-tracker.firebaseapp.com",
-          projectId: "shift-salary-tracker",
-          storageBucket: "shift-salary-tracker.firebasestorage.app",
-          messagingSenderId: "719444723616",
-          appId: "1:719444723616:web:56b421b3d8d49f6b8946c5",
-          measurementId: "G-V8V657F1S0"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        window.firebaseUser = null;
-        window.firestoreDb = db;
-
-        const SUPER_ADMIN_EMAIL = "tharaka1998.me@gmail.com";
-
-        function updateAdminPanelNavVisibility(panelRole, isSuperAdminEmail) {
-            const navItem = document.getElementById('nav-item-adminpanel');
-            if (!navItem) return;
-            const hasPanelAccess = isSuperAdminEmail || ['staff', 'manager', 'admin', 'super_admin'].includes(panelRole);
-            navItem.style.display = hasPanelAccess ? '' : 'none';
-        }
-
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                window.firebaseUser = user;
-                document.getElementById('syncStatusText').innerText = "Synced";
-                updateAccountUI(user.displayName, user.email, user.photoURL, "EMPLOYEE");
-                updateAdminPanelNavVisibility(null, user.email === SUPER_ADMIN_EMAIL);
-
-                try {
-                    const userDocRef = doc(db, "users", user.uid);
-                    onSnapshot(userDocRef, (userDoc) => {
-                        if (userDoc.exists()) {
-                            const data = userDoc.data();
-
-                            updateAdminPanelNavVisibility(data.panelRole || null, user.email === SUPER_ADMIN_EMAIL);
-
-                            // Check approval state safely — only gate users who actually requested the official template
-                            if (data.templateRequested === true) {
-                                window.isUserApproved = data.approved === true || 
-                                                      data.approved === "true" || 
-                                                      data.status === "approved" || 
-                                                      data.isApproved === true;
-                            } else {
-                                window.isUserApproved = true;
-                            }
-
-                            if (data.shifts && Array.isArray(data.shifts) && data.shifts.length > 0) {
-                                window.configuredShifts = data.shifts;
-                                localStorage.setItem('shiftgrid_shifts', JSON.stringify(data.shifts));
-                            }
-                            if (data.payCycleConfig) {
-                                window.userPayCycleConfig = data.payCycleConfig;
-                                localStorage.setItem('shiftgrid_paycycle', JSON.stringify(data.payCycleConfig));
-                            }
-                            if (data.records && Array.isArray(data.records)) {
-                                window.shiftRecords = data.records;
-                                localStorage.setItem('shiftgrid_records', JSON.stringify(data.records));
-                            }
-                            if (data.leaves && Array.isArray(data.leaves)) {
-                                window.leaveRequests = data.leaves;
-                                localStorage.setItem('shiftgrid_leaves', JSON.stringify(data.leaves));
-                            }
-                            if (data.managerRoleRequested !== undefined) {
-                                window.managerRoleRequested = data.managerRoleRequested;
-                                localStorage.setItem('shiftgrid_managerRequested', data.managerRoleRequested);
-                            }
-                            if (data.templateRequested !== undefined) {
-                                window.templateRequested = data.templateRequested;
-                                localStorage.setItem('shiftgrid_templateRequested', data.templateRequested);
-                            }
-                            if (data.displayName) {
-                                localStorage.setItem('shiftgrid_displayname', data.displayName);
-                            }
-                            if (data.photoURL) {
-                                window.currentCustomPhoto = data.photoURL;
-                                localStorage.setItem('shiftgrid_avatar', data.photoURL);
-                            }
-                            updateAccountUI(data.displayName || user.displayName, user.email, data.photoURL || user.photoURL, data.role || "EMPLOYEE");
-                            if (window.renderAvailableShifts) window.renderAvailableShifts();
-                            if (window.updateCurrentMonthHistoryView) window.updateCurrentMonthHistoryView();
-                        } else {
-                            window.isUserApproved = true;
-                            if (window.renderAvailableShifts) window.renderAvailableShifts();
-                        }
-                    }, (err) => {
-                        console.log("Firestore live sync error:", err);
-                    });
-                } catch (e) { console.log(e); }
-
-                // Real-time notifications listener (approvals, rejections, admin messages)
-                try {
-                    const notifQuery = query(collection(db, "notifications"), where("uid", "==", user.uid));
-                    onSnapshot(notifQuery, (snapshot) => {
-                        window.notifications = [];
-                        snapshot.forEach((docSnap) => {
-                            window.notifications.push({ id: docSnap.id, ...docSnap.data() });
-                        });
-                        window.updateNotifBadge();
-                        if (document.getElementById('notifPanelModal').classList.contains('active')) {
-                            window.renderNotifList();
-                        }
-                    }, (err) => {
-                        console.log("Notifications sync error:", err);
-                    });
-                } catch (e) { console.log(e); }
-
-                window.markNotificationsRead = async function() {
-                    const unread = (window.notifications || []).filter(n => !n.read);
-                    for (const n of unread) {
-                        try {
-                            await updateDoc(doc(db, "notifications", n.id), { read: true });
-                        } catch (e) { console.log("Mark read failed:", e); }
-                    }
-                };
-
-                if (window.renderAvailableShifts) window.renderAvailableShifts();
-                if (window.updateCurrentMonthHistoryView) window.updateCurrentMonthHistoryView();
-            } else {
-                window.location.href = "index.html";
-            }
-        });
-
-        window.handleSignOut = function() {
-            signOut(auth).then(() => {
-                localStorage.removeItem('shiftgrid_records');
-                localStorage.removeItem('shiftgrid_leaves');
-                localStorage.removeItem('shiftgrid_avatar');
-                localStorage.removeItem('shiftgrid_displayname');
-                localStorage.removeItem('shiftgrid_managerRequested');
-                localStorage.removeItem('shiftgrid_templateRequested');
-                window.location.href = 'index.html';
-            }).catch(() => {
-                localStorage.clear();
-                window.location.href = 'index.html';
-            });
-        };
-
-        window.saveProfileToCloud = async function(updatedName, updatedPhoto) {
-            if (window.firebaseUser) {
-                try {
-                    await setDoc(doc(db, "users", window.firebaseUser.uid), { 
-                        displayName: updatedName,
-                        photoURL: updatedPhoto || null 
-                    }, { merge: true });
-                } catch(e) { console.log(e); }
-            }
-        };
-
-        window.syncRecordsToCloud = async function(records) {
-            if (window.firebaseUser) {
-                try {
-                    await setDoc(doc(db, "users", window.firebaseUser.uid), { records: records }, { merge: true });
-                } catch(e) { console.log("Cloud sync note:", e); }
-            }
-        };
-
-        window.syncLeavesToCloud = async function(leaves) {
-            if (window.firebaseUser) {
-                try {
-                    await setDoc(doc(db, "users", window.firebaseUser.uid), { leaves: leaves }, { merge: true });
-                } catch(e) { console.log("Cloud sync note:", e); }
-            }
-        };
-
-        window.clearCustomShiftPresets = function() {
-            showConfirmModal(
-                "Clear your custom shift presets? This cannot be undone.",
-                "Clear Shift Presets",
-                "🗑️",
-                async () => {
-                    window.configuredShifts = [];
-                    localStorage.removeItem('shiftgrid_shifts');
-                    if (window.firebaseUser) {
-                        try {
-                            await setDoc(doc(db, "users", window.firebaseUser.uid), { shifts: [] }, { merge: true });
-                        } catch(e) { console.log("Cloud sync note:", e); }
-                    }
-                    window.location.href = "setup.html";
-                }
-            );
-        };
-    </script>
-</body>
-</html>
+            document.getElementById('profileAvatarDisplay').innerText = init

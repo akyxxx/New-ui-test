@@ -490,6 +490,56 @@
             flex-shrink: 0;
         }
 
+        .avatar-wrap { position: relative; flex-shrink: 0; }
+
+        .avatar-edit-badge {
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            border: 2px solid #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+        }
+
+        .avatar-edit-badge svg { width: 11px; height: 11px; }
+
+        .header-avatar-wrap { position: relative; flex-shrink: 0; }
+
+        .header-avatar-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 14px;
+            border: 1.5px solid var(--primary-blue);
+            background: #EFF4FF;
+            color: #2563eb;
+            font-weight: 700;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .header-status-dot {
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--badge-green);
+            border: 2px solid #ffffff;
+        }
+
         /* Stats grid — 2x2, compact */
         .stats-grid {
             display: grid;
@@ -524,10 +574,15 @@
 
         .stat-icon-badge svg { width: 20px; height: 20px; }
 
-        .stat-icon-blue { background: linear-gradient(135deg, #3b6ff7, #2563eb); }
-        .stat-icon-green { background: linear-gradient(135deg, #34d399, #10b981); }
-        .stat-icon-purple { background: linear-gradient(135deg, #a78bfa, #8b5cf6); }
-        .stat-icon-amber { background: linear-gradient(135deg, #fbbf24, #f59e0b); }
+        .stat-icon-blue { background: var(--primary-blue); }
+        .stat-icon-green { background: var(--badge-green); }
+        .stat-icon-purple { background: var(--panel-purple); }
+        .stat-icon-amber { background: var(--accent-orange); }
+
+        .stats-grid .stat-card:nth-child(1) { background: #EEF4FF; border-color: rgba(37, 99, 235, 0.14); }
+        .stats-grid .stat-card:nth-child(2) { background: #EAFBF3; border-color: rgba(16, 185, 129, 0.16); }
+        .stats-grid .stat-card:nth-child(3) { background: #F4F0FE; border-color: rgba(139, 92, 246, 0.16); }
+        .stats-grid .stat-card:nth-child(4) { background: #FFF6E9; border-color: rgba(245, 158, 11, 0.18); }
 
         .stat-label {
             font-size: 14px;
@@ -841,8 +896,7 @@
         .shift-icon-badge {
             width: 42px;
             height: 42px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, #3b6ff7, #2563eb);
+            border-radius: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -851,21 +905,25 @@
 
         .shift-icon-badge svg { width: 19px; height: 19px; }
 
+        .shift-icon-badge.si-blue   { background: #EAF2FF; }
+        .shift-icon-badge.si-orange { background: #FFEEE2; }
+        .shift-icon-badge.si-purple { background: #F1EBFE; }
+        .shift-icon-badge.si-teal   { background: #E4FAF4; }
+
         .shift-info { min-width: 0; }
         .shift-info h4 { font-size: 16px; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .shift-info p { font-size: 13px; color: var(--text-muted); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         .btn-log {
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
+            background-color: #ffffff;
+            color: var(--primary-blue);
+            border: 1.5px solid var(--primary-blue);
             padding: 0 18px;
             height: 44px;
             border-radius: 13px;
             font-weight: 600;
             font-size: 14px;
             cursor: pointer;
-            box-shadow: 0 3px 10px var(--primary-glow);
             flex-shrink: 0;
         }
 
@@ -1179,7 +1237,7 @@
                         </div>
                         <div class="brand-text">
                           <span class="brand-name">ShiftGrid</span>
-                          <span class="brand-tagline">WORKSPACE NAV</span>
+                          <span class="brand-tagline">Work Smarter. Track Better.</span>
                         </div>
                       </div>
                     </div>
@@ -1196,6 +1254,10 @@
                       <span class="pulse-dot">
                       </span>
                       <span id="syncStatusText">Synced</span>
+                    </div>
+                    <div class="header-avatar-wrap">
+                      <button class="header-avatar-btn" id="headerAvatarDisplay" onclick="switchView('view-settings')" aria-label="Open profile">--</button>
+                      <span class="header-status-dot"></span>
                     </div>
                   </div>
                 </div>
@@ -1299,7 +1361,12 @@
                 <div class="app-page-view active-view" id="view-dashboard">
                   <div class="profile-card">
                     <div class="profile-info">
-                      <div id="profileAvatarDisplay" class="avatar-img">--</div>
+                      <div class="avatar-wrap">
+                        <div id="profileAvatarDisplay" class="avatar-img">--</div>
+                        <button class="avatar-edit-badge" onclick="switchView('view-settings')" aria-label="Edit profile photo">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+                        </button>
+                      </div>
                       <div class="user-details">
                         <span id="profileNameDisplay" class="user-name">Loading Account...</span>
                         <div class="user-meta">
@@ -1727,6 +1794,7 @@
 
             const avatarContainer = document.getElementById('profileAvatarDisplay');
             const modalAvatarContainer = document.getElementById('modalAvatarPreview');
+            const headerAvatarContainer = document.getElementById('headerAvatarDisplay');
             const photoToUse = photoUrl || window.currentCustomPhoto;
 
             if (avatarContainer && modalAvatarContainer) {
@@ -1738,6 +1806,14 @@
                     const initials = getInitials(displayName);
                     avatarContainer.innerText = initials;
                     modalAvatarContainer.innerText = initials;
+                }
+            }
+
+            if (headerAvatarContainer) {
+                if (photoToUse) {
+                    headerAvatarContainer.innerHTML = `<img src="${photoToUse}" style="width:100%;height:100%;object-fit:cover;">`;
+                } else {
+                    headerAvatarContainer.innerText = getInitials(displayName);
                 }
             }
         }
@@ -1974,11 +2050,19 @@
                 const timeText = s.time ? s.time : 'Custom Hours';
 
                 const shiftCard = document.createElement('div');
+                const shiftIconVariants = [
+                    { cls: 'si-blue',   color: '#2563eb', svg: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>' },
+                    { cls: 'si-orange', color: '#f97316', svg: '<path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/><line x1="9" y1="18" x2="15" y2="18"/><line x1="3" y1="22" x2="21" y2="22"/>' },
+                    { cls: 'si-purple', color: '#8b5cf6', svg: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>' },
+                    { cls: 'si-teal',   color: '#14b8a6', svg: '<circle cx="8" cy="12" r="4.5"/><path d="M15.5 5.5A5.5 5.5 0 1 0 17 16.2 5.5 5.5 0 0 1 15.5 5.5z"/>' }
+                ];
+                const iv = shiftIconVariants[idx % shiftIconVariants.length];
+
                 shiftCard.className = 'shift-item';
                 shiftCard.innerHTML = `
                     <div class="shift-item-left">
-                        <div class="shift-icon-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+                        <div class="shift-icon-badge ${iv.cls}">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="${iv.color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${iv.svg}</svg>
                         </div>
                         <div class="shift-info">
                             <h4>${s.name}</h4>
@@ -2292,6 +2376,8 @@
                     const imgHtml = `<img src="${evt.target.result}" style="width:100%;height:100%;border-radius:14px;object-fit:cover;">`;
                     document.getElementById('modalAvatarPreview').innerHTML = imgHtml;
                     document.getElementById('profileAvatarDisplay').innerHTML = imgHtml;
+                    const headerAv = document.getElementById('headerAvatarDisplay');
+                    if (headerAv) headerAv.innerHTML = `<img src="${evt.target.result}" style="width:100%;height:100%;object-fit:cover;">`;
                 };
                 reader.readAsDataURL(file);
             }
@@ -2304,6 +2390,8 @@
             const initials = getInitials(name);
             document.getElementById('modalAvatarPreview').innerText = initials;
             document.getElementById('profileAvatarDisplay').innerText = initials;
+            const headerAv = document.getElementById('headerAvatarDisplay');
+            if (headerAv) headerAv.innerText = initials;
         }
 
         function saveProfileChanges() {

@@ -1100,6 +1100,35 @@
         .confirm-modal-btn-cancel { flex: 1; padding: 12px; background: #F6F8FC; color: var(--text-main); border: 1px solid var(--card-border); border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; }
         .confirm-modal-btn-danger { flex: 1; padding: 12px; background: var(--danger-red); color: #fff; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; font-size: 13px; }
 
+        /* Group Messaging */
+        .member-picker-list { max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; border: 1px solid var(--card-border); border-radius: 12px; padding: 6px; }
+        .member-picker-row { display: flex; align-items: center; gap: 10px; padding: 8px; border-radius: 10px; cursor: pointer; }
+        .member-picker-row:hover { background: #F6F8FC; }
+        .member-picker-row input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--primary-blue); flex-shrink: 0; }
+        .member-picker-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--primary-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+        .member-picker-name { font-size: 13px; font-weight: 600; color: var(--text-main); }
+        .member-picker-email { font-size: 11px; color: var(--text-muted); }
+
+        .group-list-item { display: flex; align-items: center; gap: 12px; padding: 12px 8px; border-radius: 12px; cursor: pointer; border-bottom: 1px solid var(--card-border); }
+        .group-list-item:last-child { border-bottom: none; }
+        .group-list-item:hover { background: #F6F8FC; }
+        .group-list-avatar { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #3b6ff7, #1d4ed8); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; flex-shrink: 0; }
+        .group-list-name { font-size: 13.5px; font-weight: 700; color: var(--text-main); }
+        .group-list-meta { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+        .chat-messages-box { height: 52vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 10px 4px; margin-bottom: 10px; }
+        .chat-bubble-row { display: flex; flex-direction: column; max-width: 78%; }
+        .chat-bubble-row.mine { align-self: flex-end; align-items: flex-end; }
+        .chat-bubble-row.theirs { align-self: flex-start; align-items: flex-start; }
+        .chat-bubble-sender { font-size: 10.5px; color: var(--text-muted); font-weight: 700; margin-bottom: 2px; padding: 0 4px; }
+        .chat-bubble { padding: 9px 13px; border-radius: 16px; font-size: 13.5px; line-height: 1.4; word-break: break-word; }
+        .chat-bubble-row.mine .chat-bubble { background: var(--primary-blue); color: #fff; border-bottom-right-radius: 4px; }
+        .chat-bubble-row.theirs .chat-bubble { background: #F1F4FA; color: var(--text-main); border-bottom-left-radius: 4px; }
+        .chat-input-row { display: flex; gap: 8px; align-items: center; }
+        .chat-input-row .form-input { flex: 1; margin-bottom: 0; }
+        .chat-send-btn { width: 44px; height: 44px; border-radius: 12px; background: var(--primary-blue); color: #fff; border: none; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+        .chat-send-btn svg { width: 19px; height: 19px; }
+
         .header-right-group { display: flex; align-items: center; gap: 8px; }
         .notif-bell-btn {
             position: relative;
@@ -1339,6 +1368,16 @@
                         <span class="nav-subtitle">Request & Track Overtime</span>
                       </div>
                       <div class="nav-edge-badge purple">+</div>
+                    </div>
+                    <div class="nav-item" id="nav-item-messages" onclick="switchView('view-messages')">
+                      <div class="nav-icon-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                      </div>
+                      <div class="nav-details">
+                        <span class="nav-title">Messages</span>
+                        <span class="nav-subtitle">Group Chats & Discussions</span>
+                      </div>
+                      <div class="nav-edge-badge" style="background:#0891b2;">💬</div>
                     </div>
                     <div class="nav-item" id="nav-item-adminpanel" onclick="window.location.href='admin.html'" style="display:none;">
                       <div class="nav-icon-box">
@@ -1592,7 +1631,58 @@
                       </div>
                     </div>
                   </div>
-                  <!-- ================= PAGE VIEW 5: SETTINGS ================= -->
+                  <!-- ================= PAGE VIEW: MESSAGES / GROUP CHAT ================= -->
+                  <div class="app-page-view" id="view-messages">
+                    <div class="page-header-nav">
+                      <button class="btn-back-dash" onclick="switchView('view-dashboard')">← Dashboard</button>
+                      <h2 class="page-header-title">Messages</h2>
+                    </div>
+
+                    <!-- Groups list panel -->
+                    <div id="groupsListPanel">
+                      <button class="btn-primary-block" style="margin-bottom:14px;" onclick="openCreateGroupModal()">+ New Group</button>
+                      <div class="section-box">
+                        <h3 class="section-title" style="margin-bottom:12px;">Your Groups</h3>
+                        <div class="history-list" id="groupsListContainer">
+                          <div class="empty-history">No groups yet. Create one to start messaging.</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Chat panel (shown when a group is opened) -->
+                    <div id="groupChatPanel" style="display:none;">
+                      <div class="page-header-nav" style="margin-bottom:10px;">
+                        <button class="btn-back-dash" onclick="closeGroupChat()">← Groups</button>
+                        <h2 class="page-header-title" id="chatGroupName">Group</h2>
+                      </div>
+                      <div id="chatMessagesContainer" class="chat-messages-box"></div>
+                      <div class="chat-input-row">
+                        <input type="text" id="chatMessageInput" class="form-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter'){sendGroupMessage();}">
+                        <button class="chat-send-btn" onclick="sendGroupMessage()" aria-label="Send">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- New Group creation modal -->
+                  <div class="cal-modal-overlay" id="newGroupModalOverlay" onclick="if(event.target===this)closeCreateGroupModal();">
+                    <div class="cal-card" style="max-height: 82vh; overflow-y: auto;">
+                      <h3 style="font-size:16px; font-weight:800; margin-bottom:14px;">New Group</h3>
+                      <div class="form-group">
+                        <label>Group Name</label>
+                        <input type="text" id="newGroupNameInput" class="form-input" placeholder="e.g. Weekend Team">
+                      </div>
+                      <div class="form-group">
+                        <label>Add Members</label>
+                        <div id="memberPickerList" class="member-picker-list">
+                          <div class="empty-history">Loading users...</div>
+                        </div>
+                      </div>
+                      <button class="btn-primary-block" onclick="createGroup()">Create Group</button>
+                      <button class="btn-modal-link" onclick="closeCreateGroupModal()">Cancel</button>
+                    </div>
+                  </div>
                   <div class="app-page-view" id="view-settings">
                     <div class="page-header-nav">
                       <button class="btn-back-dash" onclick="switchView('view-dashboard')">← Dashboard</button>
@@ -1666,12 +1756,11 @@
                           </svg>
                           <span>Payouts</span>
                         </button>
-                        <button class="bottom-nav-item" id="bottomNav-leave" onclick="switchView('view-leave')">
+                        <button class="bottom-nav-item" id="bottomNav-messages" onclick="switchView('view-messages')">
                           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="9"/>
-                            <path d="M12 7v5l3.5 2"/>
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
                           </svg>
-                          <span>Insights</span>
+                          <span>Messages</span>
                         </button>
                       </nav>
                       <!-- Global Calendar Modal -->
@@ -2463,7 +2552,7 @@
                       <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc, onSnapshot, collection, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+        import { getFirestore, doc, setDoc, onSnapshot, collection, query, where, updateDoc, addDoc, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
         const firebaseConfig = {
           apiKey: "AIzaSyA93AnibNs8iaNwYuy1tJglGXXqeY6p2oo",
@@ -2590,6 +2679,33 @@
                     }
                 };
 
+                // ---- Messages / Group Chat: user directory (for the "add members" picker) ----
+                try {
+                    onSnapshot(collection(db, "users"), (snapshot) => {
+                        window.directoryUsers = [];
+                        snapshot.forEach((docSnap) => {
+                            if (docSnap.id === user.uid) return;
+                            const d = docSnap.data();
+                            window.directoryUsers.push({ uid: docSnap.id, name: d.displayName || d.email || "User", email: d.email || "" });
+                        });
+                        if (document.getElementById('newGroupModalOverlay').style.display === 'flex') {
+                            window.renderMemberPicker();
+                        }
+                    }, (err) => { console.log("User directory sync error:", err); });
+                } catch (e) { console.log(e); }
+
+                // ---- Messages / Group Chat: groups this user belongs to ----
+                try {
+                    const groupsQuery = query(collection(db, "groups"), where("members", "array-contains", user.uid));
+                    onSnapshot(groupsQuery, (snapshot) => {
+                        window.myGroups = [];
+                        snapshot.forEach((docSnap) => {
+                            window.myGroups.push({ id: docSnap.id, ...docSnap.data() });
+                        });
+                        window.renderGroupsList();
+                    }, (err) => { console.log("Groups sync error:", err); });
+                } catch (e) { console.log(e); }
+
                 if (window.renderAvailableShifts) window.renderAvailableShifts();
                 if (window.updateCurrentMonthHistoryView) window.updateCurrentMonthHistoryView();
             } else {
@@ -2599,6 +2715,150 @@
             console.log("Auth state error:", err);
             window.showConnIssue(`Auth error: ${err.code || err.message || 'unknown'}`);
         });
+
+        // ================= MESSAGES / GROUP CHAT =================
+        window.directoryUsers = [];
+        window.myGroups = [];
+        window.currentOpenGroupId = null;
+        let unsubChatMessages = null;
+
+        function escapeHtml(str) {
+            const d = document.createElement('div');
+            d.innerText = str || '';
+            return d.innerHTML;
+        }
+
+        window.openCreateGroupModal = function() {
+            document.getElementById('newGroupNameInput').value = '';
+            window.renderMemberPicker();
+            document.getElementById('newGroupModalOverlay').style.display = 'flex';
+        };
+
+        window.closeCreateGroupModal = function() {
+            document.getElementById('newGroupModalOverlay').style.display = 'none';
+        };
+
+        window.renderMemberPicker = function() {
+            const list = document.getElementById('memberPickerList');
+            const users = window.directoryUsers || [];
+            if (users.length === 0) {
+                list.innerHTML = `<div class="empty-history">No other users found yet.</div>`;
+                return;
+            }
+            list.innerHTML = users.map(u => `
+                <label class="member-picker-row">
+                    <input type="checkbox" value="${u.uid}" data-name="${escapeHtml(u.name)}">
+                    <div class="member-picker-avatar">${escapeHtml(u.name).charAt(0).toUpperCase()}</div>
+                    <div>
+                        <div class="member-picker-name">${escapeHtml(u.name)}</div>
+                        <div class="member-picker-email">${escapeHtml(u.email)}</div>
+                    </div>
+                </label>
+            `).join('');
+        };
+
+        window.createGroup = async function() {
+            const name = document.getElementById('newGroupNameInput').value.trim();
+            if (!name) { showCustomAlert("Please enter a group name.", "Missing Name", "⚠️"); return; }
+
+            const checked = Array.from(document.querySelectorAll('#memberPickerList input[type="checkbox"]:checked'));
+            if (checked.length === 0) { showCustomAlert("Select at least one member to add.", "No Members Selected", "⚠️"); return; }
+
+            const memberInfo = {};
+            const memberIds = [window.firebaseUser.uid];
+            memberInfo[window.firebaseUser.uid] = window.firebaseUser.displayName || window.firebaseUser.email || "Me";
+            checked.forEach(cb => {
+                memberIds.push(cb.value);
+                memberInfo[cb.value] = cb.dataset.name;
+            });
+
+            try {
+                await addDoc(collection(db, "groups"), {
+                    name: name,
+                    members: memberIds,
+                    memberInfo: memberInfo,
+                    createdBy: window.firebaseUser.uid,
+                    createdAt: serverTimestamp()
+                });
+                window.closeCreateGroupModal();
+            } catch (e) {
+                console.log(e);
+                showCustomAlert("Couldn't create the group. " + (e.code || e.message), "Error", "⚠️");
+            }
+        };
+
+        window.renderGroupsList = function() {
+            const container = document.getElementById('groupsListContainer');
+            const groups = window.myGroups || [];
+            if (groups.length === 0) {
+                container.innerHTML = `<div class="empty-history">No groups yet. Create one to start messaging.</div>`;
+                return;
+            }
+            container.innerHTML = groups.map(g => {
+                const memberCount = (g.members || []).length;
+                return `
+                <div class="group-list-item" onclick="openGroupChat('${g.id}')">
+                    <div class="group-list-avatar">${escapeHtml(g.name).charAt(0).toUpperCase()}</div>
+                    <div>
+                        <div class="group-list-name">${escapeHtml(g.name)}</div>
+                        <div class="group-list-meta">${memberCount} member${memberCount === 1 ? '' : 's'}</div>
+                    </div>
+                </div>`;
+            }).join('');
+        };
+
+        window.openGroupChat = function(groupId) {
+            const group = (window.myGroups || []).find(g => g.id === groupId);
+            if (!group) return;
+            window.currentOpenGroupId = groupId;
+            document.getElementById('chatGroupName').innerText = group.name;
+            document.getElementById('groupsListPanel').style.display = 'none';
+            document.getElementById('groupChatPanel').style.display = 'block';
+
+            if (unsubChatMessages) unsubChatMessages();
+            const msgsQuery = query(collection(db, "groups", groupId, "messages"), orderBy("createdAt", "asc"));
+            unsubChatMessages = onSnapshot(msgsQuery, (snapshot) => {
+                const box = document.getElementById('chatMessagesContainer');
+                const myUid = window.firebaseUser ? window.firebaseUser.uid : null;
+                let html = '';
+                snapshot.forEach((docSnap) => {
+                    const m = docSnap.data();
+                    const mine = m.senderId === myUid;
+                    html += `
+                        <div class="chat-bubble-row ${mine ? 'mine' : 'theirs'}">
+                            ${!mine ? `<div class="chat-bubble-sender">${escapeHtml(m.senderName)}</div>` : ''}
+                            <div class="chat-bubble">${escapeHtml(m.text)}</div>
+                        </div>`;
+                });
+                box.innerHTML = html || `<div class="empty-history">No messages yet. Say hello!</div>`;
+                box.scrollTop = box.scrollHeight;
+            }, (err) => { console.log("Chat messages sync error:", err); });
+        };
+
+        window.closeGroupChat = function() {
+            if (unsubChatMessages) { unsubChatMessages(); unsubChatMessages = null; }
+            window.currentOpenGroupId = null;
+            document.getElementById('groupChatPanel').style.display = 'none';
+            document.getElementById('groupsListPanel').style.display = 'block';
+        };
+
+        window.sendGroupMessage = async function() {
+            const input = document.getElementById('chatMessageInput');
+            const text = input.value.trim();
+            if (!text || !window.currentOpenGroupId || !window.firebaseUser) return;
+            input.value = '';
+            try {
+                await addDoc(collection(db, "groups", window.currentOpenGroupId, "messages"), {
+                    senderId: window.firebaseUser.uid,
+                    senderName: window.firebaseUser.displayName || window.firebaseUser.email || "User",
+                    text: text,
+                    createdAt: serverTimestamp()
+                });
+            } catch (e) {
+                console.log(e);
+                showCustomAlert("Message couldn't be sent. " + (e.code || e.message), "Error", "⚠️");
+            }
+        };
 
         window.handleSignOut = function() {
             signOut(auth).then(() => {

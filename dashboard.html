@@ -4,6 +4,53 @@
     <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>ShiftGrid — Modern Workspace</title>
+
+        <!-- TEMPORARY DEBUG OVERLAY — self-contained, no external requests.
+             Catches every JS error and Firestore rejection and shows it
+             directly on-screen. Remove this whole block once the bug is fixed. -->
+        <style>
+          #jsErrorOverlay {
+            display: none;
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            z-index: 999999;
+            background: #7f1d1d;
+            color: #fff;
+            font: 11px/1.5 monospace;
+            padding: 10px 12px;
+            max-height: 45vh;
+            overflow: auto;
+            white-space: pre-wrap;
+            word-break: break-word;
+            box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+          }
+          #jsErrorOverlay strong { color: #fecaca; }
+        </style>
+        <script>
+          (function() {
+            var box = document.createElement('div');
+            box.id = 'jsErrorOverlay';
+            document.addEventListener('DOMContentLoaded', function() {
+              document.body.insertBefore(box, document.body.firstChild);
+            });
+            function showError(label, msg) {
+              box.style.display = 'block';
+              var line = document.createElement('div');
+              line.innerHTML = '<strong>' + label + ':</strong> ' + String(msg).replace(/</g, '&lt;');
+              box.appendChild(line);
+            }
+            window.addEventListener('error', function(e) {
+              showError('JS ERROR', (e.message || 'Unknown error') + '  [' + (e.filename || '') + ':' + (e.lineno || '') + ':' + (e.colno || '') + ']');
+            });
+            window.addEventListener('unhandledrejection', function(e) {
+              var reason = e.reason;
+              var msg = (reason && reason.message) ? reason.message : String(reason);
+              var code = (reason && reason.code) ? (' [code: ' + reason.code + ']') : '';
+              showError('PROMISE REJECTION', msg + code);
+            });
+          })();
+        </script>
+
         <!-- Google Font: Inter -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
           <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2117,38 +2164,4 @@
             // Render inline message if user is explicitly unapproved by admin
             if (!window.isUserApproved) {
                 container.innerHTML = `
-                    <div style="background: rgba(13, 21, 34, 0.6); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px; text-align: center;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #2563eb; font-size: 13px; font-weight: 700; margin-bottom: 4px;">
-                            <span>⏳</span>
-                            <span>Official Shift Template Pending Admin Approval</span>
-                        </div>
-                        <p style="font-size: 11px; color: var(--text-muted); font-weight: 500;">
-                            Shift options are hidden during the pending review period.
-                        </p>
-                    </div>
-                `;
-                return;
-            }
-
-            const shiftsToRender = (window.configuredShifts && window.configuredShifts.length > 0) 
-                ? window.configuredShifts 
-                : defaultSSShifts;
-
-            const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-            const currentDayName = dayNames[selectedLogDate.getDay()];
-            const isSaturday = selectedLogDate.getDay() === 6;
-
-            shiftsToRender.forEach((s, idx) => {
-                const baseRate = s.rate !== undefined ? Number(s.rate) : (Number(s.normal) || 0);
-                
-                // Calculate day bonus percentage safely
-                let bonusPct = 0;
-                if (s.bonusDays && Array.isArray(s.bonusDays) && s.bonusDays.includes(currentDayName)) {
-                    bonusPct = s.dayBonusPercent !== undefined ? Number(s.dayBonusPercent) : 50;
-                } else if (isSaturday && (s.dayBonusPercent !== undefined || s.bonusDays === undefined)) {
-                    bonusPct = s.dayBonusPercent !== undefined ? Number(s.dayBonusPercent) : 50;
-                }
-
-                const finalRate = bonusPct > 0 ? baseRate * (1 + bonusPct / 100) : baseRate;
-                const rateLabel = bonusPct > 0 ? `LKR ${finalRate.toLocaleString()} (+${bonusPct}%)` : `LKR ${baseRate.toLocaleString()}`;
-                const timeText = s.time ? s.time : 
+                    <div style="background: rgba(13, 21, 34, 0.6); border: 1px solid var(--card-border); border-radius: 16px; padding: 16px; text-ali
